@@ -30,9 +30,11 @@ import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     int idPaciente;
+    int idUsuario;
     TextView txtNombre, txtDni, txtObra, txtSocio;
     ListView lstUsuarios;
     Adapter adapter;
+    ImageButton btnNuevo;
     Usuario usuario = new Usuario();
     Paciente paciente = new Paciente();
     @Override
@@ -43,6 +45,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         idPaciente = bundle.getInt(verTurnos.hola);
+        idUsuario = bundle.getInt(verChats.shalom);
         paciente.idPaciente = idPaciente;
         paciente = paciente.TraerUno();
         txtNombre.setText(paciente.nombre + " " + paciente.apellido);
@@ -52,6 +55,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         ArrayList<Usuario> usuarios = usuario.TraerUsuariosPaciente(idPaciente);
         adapter = new Adapter(usuarios,this);
         lstUsuarios.setAdapter(adapter);
+        btnNuevo.setOnClickListener(btnNuevo_Click);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -102,15 +106,26 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_turno) {
             Intent intent = new Intent(Main2Activity.this, verTurnos.class);
             Bundle bundle = new Bundle();
             bundle.putInt(verTurnos.hola, idPaciente);
             intent.putExtras(bundle);
             startActivity(intent);
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_muro) {
+            Intent intent = new Intent(Main2Activity.this, muroActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt(verTurnos.hola, idPaciente);
+            bundle.putInt(verChats.shalom, idUsuario);
+            intent.putExtras(bundle);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_chat) {
+            Intent intent = new Intent(Main2Activity.this, verChats.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt(verTurnos.hola, idUsuario);
+            intent.putExtras(bundle);
+            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
 
@@ -131,6 +146,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         txtObra = (TextView) findViewById(R.id.txtObra);
         txtSocio = (TextView) findViewById(R.id.txtSocio);
         lstUsuarios = (ListView) findViewById(R.id.lstUsuarios);
+        btnNuevo =(ImageButton) findViewById(R.id.btnNuevo);
     }
 
     public class Adapter extends BaseAdapter {
@@ -194,6 +210,9 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                             else
                             {
                                 Toast.makeText(Main2Activity.this, "Se ha eliminado con exito", Toast.LENGTH_SHORT).show();
+                                ArrayList<Usuario> usuarios = usuario.TraerUsuariosPaciente(idPaciente);
+                                adapter = new Adapter(usuarios,Main2Activity.this);
+                                lstUsuarios.setAdapter(adapter);
                             }
                         }
                     })
@@ -214,6 +233,16 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             /*Intent elintent = new Intent(Main2Activity.this, modificarPaciente.class);
             Bundle bundle = new Bundle();
             bundle.putInt(iniciarSesion.ajaj, adapter.getItem((Integer) view.getTag()).idUsuario);*/
+        }
+    };
+    private View.OnClickListener btnNuevo_Click = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(Main2Activity.this, agregarFamiliar.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt(verTurnos.hola, idPaciente);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     };
 }

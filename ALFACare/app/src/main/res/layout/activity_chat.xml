@@ -8,18 +8,22 @@
     android:orientation="vertical"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.alfa.alfacare.chat">
+    tools:context="com.example.alfa.alfacare.chat"
+    android:background="#4b4646">
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="380dp"
-        android:id="@+id/lstMensajes" />
+        android:layout_height="350dp"
+        android:id="@+id/lstMensajes"
+        android:background="#ffffff" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/edtMensaje"
-        android:layout_gravity="bottom" />
+        android:layout_gravity="bottom"
+        android:background="#ffffff"
+        android:layout_marginTop="15dp"/>
 
     <Button
         android:layout_width="match_parent"

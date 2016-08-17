@@ -31,6 +31,7 @@ public class iniciarSesion extends AppCompatActivity {
                 Intent elintent = new Intent(iniciarSesion.this, Main2Activity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt(verTurnos.hola, miUsuario.idpaciente);
+                bundle.putInt(verChats.shalom, miUsuario.idUsuario);
                 elintent.putExtras(bundle);
                 startActivity(elintent);
             }

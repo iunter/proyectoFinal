@@ -8,7 +8,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.alfa.alfacare.verUnTurno">
+    tools:context="com.example.alfa.alfacare.verUnTurno"
+    android:background="#403c3c">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -25,29 +26,36 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/dtpMod"
                 android:datePickerMode="spinner"
-                android:clickable="false" />
+                android:clickable="false"
+                android:layout_marginTop="5dp"/>
 
             <TimePicker
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tmpMod" />
+                android:id="@+id/tmpMod"
+                android:layout_marginTop="15dp"/>
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spnCentro" />
+                android:id="@+id/spnCentro"
+                android:background="#ffffff"
+                android:layout_marginTop="15dp"/>
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/spnMedico"
-                android:layout_gravity="center_horizontal" />
+                android:layout_gravity="center_horizontal"
+                android:background="#ffffff"
+                android:layout_marginTop="15dp"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Modificar"
-                android:id="@+id/btnModificar"/>
+                android:id="@+id/btnModificar"
+                android:layout_marginTop="20dp"/>
 
             <Button
                 android:layout_width="match_parent"
