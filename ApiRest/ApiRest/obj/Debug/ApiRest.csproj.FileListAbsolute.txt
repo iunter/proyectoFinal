@@ -253,6 +253,7 @@ Z:\Proyecto\ApiRest\ApiRest\bin\ko\System.Spatial.resources.dll
 Z:\Proyecto\ApiRest\ApiRest\bin\ru\System.Spatial.resources.dll
 Z:\Proyecto\ApiRest\ApiRest\bin\zh-Hans\System.Spatial.resources.dll
 Z:\Proyecto\ApiRest\ApiRest\bin\zh-Hant\System.Spatial.resources.dll
+<<<<<<< HEAD
 E:\proyectoFinal\ApiRest\ApiRest\bin\ApiRest.dll.config
 E:\proyectoFinal\ApiRest\ApiRest\bin\ApiRest.dll
 E:\proyectoFinal\ApiRest\ApiRest\bin\ApiRest.pdb
@@ -414,3 +415,5 @@ G:\proyectoFinal\ApiRest\ApiRest\bin\ru\System.Spatial.resources.dll
 G:\proyectoFinal\ApiRest\ApiRest\bin\zh-Hans\System.Spatial.resources.dll
 G:\proyectoFinal\ApiRest\ApiRest\bin\zh-Hant\System.Spatial.resources.dll
 G:\proyectoFinal\ApiRest\ApiRest\obj\Debug\ApiRest.pdb
+=======
+>>>>>>> 7738df7099a524e3ea338296d54c13be1dffe417

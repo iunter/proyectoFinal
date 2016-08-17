@@ -17,6 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".registrarPaciente" />
         <activity android:name=".turno" />
         <activity android:name=".seleccionHora" />
@@ -34,6 +35,9 @@
         <activity android:name=".verUsuario" />
         <activity android:name=".muroActivity" >
         </activity>
+=======
+        <activity android:name=".turno"></activity>
+>>>>>>> 7738df7099a524e3ea338296d54c13be1dffe417
     </application>
 
 </manifest>
