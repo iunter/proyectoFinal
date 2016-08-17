@@ -1,6 +1,5 @@
 package com.example.alfa.alfacare;
 
-<<<<<<< HEAD
 import android.content.Intent;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
@@ -42,6 +41,8 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 public class turno extends AppCompatActivity {
     int dia;
     int mes;
@@ -63,18 +64,14 @@ public class turno extends AppCompatActivity {
     public static final String mess = "mes";
     public static final String yearr = "year";
     public static final String bandel = "eaaa";
-=======
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
-public class turno extends AppCompatActivity {
 
->>>>>>> 7738df7099a524e3ea338296d54c13be1dffe417
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turno);
-<<<<<<< HEAD
         dtpfecha = (DatePicker) findViewById(R.id.datePicker);
         btnCambiar = (Button) findViewById(R.id.button);
         spnCentros = (Spinner)findViewById(R.id.spinner);
@@ -133,7 +130,5 @@ public class turno extends AppCompatActivity {
             turnoClass sopapa = new turnoClass();
         }
     };
-=======
-    }
->>>>>>> 7738df7099a524e3ea338296d54c13be1dffe417
 }
+

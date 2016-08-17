@@ -14,6 +14,7 @@ while($row = mysqli_fetch_array($result))
 	$idusuario=$row['idusuario'];
 	$usuario = $row['usuario'];
 	$nombre=$row['nombre'];
+	$apellido= $row['apellido'];
 	$dni=$row['dni'];
 	$foto = $row['foto'];
 	$matricula = $row['matricula'];
@@ -22,7 +23,7 @@ while($row = mysqli_fetch_array($result))
 	$idpaciente = $row['idpaciente'];
 	$tipo = $row['tipo'];
 	//actualizar en host
-	$objeto = array('idusuario'=> $idusuario, 'usuario'=> $usuario, 'nombre'=> $nombre, 'dni'=> $dni, 'foto'=> $foto, 'matricula'=> $matricula, 'idtipo'=> $idtipo, 'idpaciente'=> $idpaciente,'tipo'=> $tipo);	
+	$objeto = array('idusuario'=> $idusuario, 'usuario'=> $usuario, 'nombre'=> $nombre, 'apellido'=>$apellido,'dni'=> $dni, 'foto'=> $foto, 'matricula'=> $matricula, 'idtipo'=> $idtipo, 'idpaciente'=> $idpaciente,'tipo'=> $tipo);	
 	$objetos[] = $objeto;
 }
 $close = mysqli_close($con) 

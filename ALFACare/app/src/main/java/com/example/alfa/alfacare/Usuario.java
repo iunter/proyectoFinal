@@ -156,6 +156,7 @@ public class Usuario {
                 devolver.usuario = JsonTurno.getString("usuario");
                 devolver.dni = JsonTurno.getInt("dni");
                 devolver.nombre = JsonTurno.getString("nombre");
+                devolver.apellido = JsonTurno.getString("apellido");
                 devolver.foto = JsonTurno.getString("foto");
                 devolver.matricula = JsonTurno.getString("matricula");
                 devolver.idTipo = JsonTurno.getInt("idtipo");

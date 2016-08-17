@@ -10,7 +10,6 @@
     android:orientation="vertical"
     tools:context="com.example.alfa.alfacare.turno">
 
-<<<<<<< HEAD
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +50,7 @@
 
         </LinearLayout>
     </ScrollView>
-=======
+
     <CalendarView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,6 +63,5 @@
         android:layout_width="wrap_content"
         android:layout_height="102dp"
         android:id="@+id/timePicker" />
->>>>>>> 7738df7099a524e3ea338296d54c13be1dffe417
 
 </LinearLayout>

@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context="com.example.alfa.alfacare.verUnTurno"
-    android:background="#403c3c">
+    android:background="#b6afaf">
 
     <ScrollView
         android:layout_width="wrap_content"
