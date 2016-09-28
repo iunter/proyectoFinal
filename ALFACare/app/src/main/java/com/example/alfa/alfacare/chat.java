@@ -1,7 +1,10 @@
 package com.example.alfa.alfacare;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +17,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class chat extends AppCompatActivity {
     ListView lstChat;
@@ -22,6 +27,9 @@ public class chat extends AppCompatActivity {
     Mensaje mensaje = new Mensaje();
     Adapter adapter;
     ArrayList<Mensaje> list = new ArrayList<Mensaje>();
+    public static int cont;
+    public static AlarmManager alarmManager;
+    public static PendingIntent pending;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +42,12 @@ public class chat extends AppCompatActivity {
         mensaje.idusuario = bundle.getInt(verChats.shalom);
         adapter = new Adapter(list,this);
         lstChat.setAdapter(adapter);
+        cont = adapter.getCount();
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent alarmIntent = new Intent(getApplicationContext(), MyIntentService.class);
+        pending = PendingIntent.getService(getApplicationContext(), 0, alarmIntent, 0);
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                System.currentTimeMillis(),5000, pending);
         btnEnviar.setOnClickListener(btnEnviar_Click);
     }
     private View.OnClickListener btnEnviar_Click = new View.OnClickListener() {
@@ -46,6 +60,7 @@ public class chat extends AppCompatActivity {
                 list = mensaje.TraerMensaje();
                 adapter = new Adapter(list, chat.this);
                 lstChat.setAdapter(adapter);
+                cont = adapter.getCount();
             }
         }
     };
