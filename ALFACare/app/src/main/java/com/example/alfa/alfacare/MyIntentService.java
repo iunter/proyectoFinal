@@ -31,10 +31,11 @@ public class MyIntentService extends IntentService{
     public MyIntentService(){
         super("MyIntentService");
     }
-    public boolean refresh;
+    public boolean refresh = false;
     private OkHttpClient cli=new OkHttpClient();
     @Override
     protected void onHandleIntent(final Intent workIntent) {
+
         SinEstoNoFunca();
         Usuario devolver = new Usuario();
         OkHttpClient client = new OkHttpClient();
@@ -61,7 +62,7 @@ public class MyIntentService extends IntentService{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if(!refresh)
+        if(refresh)
         {
             Notification n  = null;
             Intent intent = new Intent(getApplicationContext(), verChats.class);
@@ -79,6 +80,7 @@ public class MyIntentService extends IntentService{
                         //.addAction(R.drawable.logoproyecto, "Call", pIntent)
 
                         .build();
+
             }
 
 

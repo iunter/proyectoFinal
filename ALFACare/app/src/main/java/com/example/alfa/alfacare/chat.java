@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,11 +44,11 @@ public class chat extends AppCompatActivity {
         adapter = new Adapter(list,this);
         lstChat.setAdapter(adapter);
         cont = adapter.getCount();
-        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent alarmIntent = new Intent(getApplicationContext(), MyIntentService.class);
-        pending = PendingIntent.getService(getApplicationContext(), 0, alarmIntent, 0);
-        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                System.currentTimeMillis(),5000, pending);
+            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            Intent alarmIntent = new Intent(getApplicationContext(), MyIntentService.class);
+            pending = PendingIntent.getService(getApplicationContext(), 0, alarmIntent, 0);
+            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + 3000, 60000, pending);
         btnEnviar.setOnClickListener(btnEnviar_Click);
     }
     private View.OnClickListener btnEnviar_Click = new View.OnClickListener() {
