@@ -6,7 +6,7 @@ if (mysqli_connect_errno()) {
 $cambios = false;
 $string = file_get_contents('php://input');
 $mensaje=json_decode($string,true);
-$query = 'SELECT COUNT(mensaje) AS cont, mensaje.idchat as idchat, chat.idusuario1 as idusuario1, chat.idusuario2 as idusuario2  FROM mensaje INNER JOIN chat ON chat.idchat = mensaje.idchat WHERE enviado = 0 AND NOT idusuario  ='.$mensaje['usuario'].' GROUP BY mensaje.idchat;';
+$query = 'SELECT COUNT(mensaje) AS cont, publicacion.idusuario FROM publicacion WHERE enviado = 0 AND NOT idusuario  = '.$mensaje['usuario'].' AND idpaciente = '.$mensaje['paciente'].' GROUP BY publicacion.idusuario;';
 $objetos = array();
 //esta asignando
 $result = mysqli_query($con, $query);
@@ -14,12 +14,11 @@ while($row = mysqli_fetch_array($result))
 { 
 	if($row['cont'] > 0)
 	{
-		if($row['idusuario1'] == $mensaje['usuario'] || $row['idusuario2'] == $mensaje['usuario'])
+		if($row['idusuario'] != $mensaje['usuario'])
 		{
-			$Id=$row['idchat'];
+			$Id=$row['idusuario'];
 			$cantidad=$row['cont'];
-			$idmensaje = $row['idmensaje'];
-			$objeto = array('idchat'=> $Id, 'cont'=> $cantidad);	
+			$objeto = array('idusuario'=> $Id, 'cont'=> $cantidad);	
 			$objetos[] = $objeto;
 		}
 	}

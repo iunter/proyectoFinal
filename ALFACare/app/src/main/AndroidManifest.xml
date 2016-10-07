@@ -3,6 +3,7 @@
     package="com.example.alfa.alfacare">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -39,7 +40,7 @@
             android:enabled="true"
             android:exported="false" />
         <service
-            android:name=".MyIntentService2"
+            android:name=".PublicacionService"
             android:exported="false"></service>
     </application>
 

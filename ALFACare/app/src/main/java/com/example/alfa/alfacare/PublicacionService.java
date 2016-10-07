@@ -5,12 +5,11 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.StrictMode;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
@@ -24,28 +23,29 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 /**
- * Created by 41470398 on 14/9/2016.
+ * An {@link IntentService} subclass for handling asynchronous task requests in
+ * a service on a separate handler thread.
+ * <p>
+ * TODO: Customize class - update intent actions, extra parameters and static
+ * helper methods.
  */
-public class MyIntentService extends IntentService{
-    public MyIntentService(){
+public class PublicacionService extends IntentService {
+    public PublicacionService(){
         super("MyIntentService");
     }
-    public boolean refresh = false;
     private OkHttpClient cli=new OkHttpClient();
     @Override
-    protected void onHandleIntent(final Intent workIntent) {
-
+    protected void onHandleIntent(Intent myintent) {
         SinEstoNoFunca();
-        ArrayList<NotiChat> lista = new ArrayList<NotiChat>();
-        Usuario devolver = new Usuario();
+        ArrayList<PubliNoti> lista = new ArrayList<PubliNoti>();
         OkHttpClient client = new OkHttpClient();
-        String url ="http://alfacare.esy.es/DB/NotificacionMensaje1.php";
+        String url ="http://alfacare.esy.es/DB/NotificacionPublicacion1.php";
         JSONObject json = new JSONObject();
         try {
             json.put("usuario", Main2Activity.idUsuario);
+            json.put("paciente", Main2Activity.idPaciente);
             RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString());
             Request request = new Request.Builder()
                     .url(url)
@@ -68,14 +68,14 @@ public class MyIntentService extends IntentService{
                 acum += lista.get(i).cont;
             }
             Notification n  = null;
-            Intent intent = new Intent(getApplicationContext(), verChats.class);
+            Intent intent = new Intent(getApplicationContext(), muroActivity.class);
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                 Bitmap icon = BitmapFactory.decodeResource(getApplicationContext().getResources(),
                         R.drawable.logo2);
                 PendingIntent pIntent = PendingIntent.getActivity(getApplicationContext(), (int) System.currentTimeMillis(), intent, 0);
                 n = new Notification.Builder(getApplicationContext())
-                        .setContentTitle("Tienes " + acum + " mensajes de " + String.valueOf(lista.size()) + " chats")
-                        .setContentText("Ver Mensajes")
+                        .setContentTitle("Hay " + acum + " nuevas publicaciones de " + String.valueOf(lista.size()) + " usuarios")
+                        .setContentText("Ver publicaciones")
                         .setSmallIcon(R.drawable.logo2)
                         .setContentIntent(pIntent)
                         .setAutoCancel(true)
@@ -94,14 +94,14 @@ public class MyIntentService extends IntentService{
 
             notificationManager.notify(0, n);
             client = new OkHttpClient();
-            url ="http://alfacare.esy.es/DB/NotificacionMensaje2.php";
-             JSONArray jsonArray = new JSONArray();
+            url ="http://alfacare.esy.es/DB/NotificacionPublicacion2.php";
+            JSONArray jsonArray = new JSONArray();
 
             try {
                 for (int i = 0; i < lista.size(); i++)
                 {
                     json = new JSONObject();
-                    json.put("idchat",lista.get(i).idchat);
+                    json.put("idpaciente",Main2Activity.idPaciente);
                     json.put("idusuario", Main2Activity.idUsuario);
                     jsonArray.put(i,json);
                 }
@@ -119,25 +119,18 @@ public class MyIntentService extends IntentService{
             }
         }
     }
-    private void SinEstoNoFunca()
-    {
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-    }
-    private ArrayList<NotiChat> ParsearResultado(String JSONstr)
+    private ArrayList<PubliNoti> ParsearResultado(String JSONstr)
     {
 
-        NotiChat devolver;
-        ArrayList<NotiChat> lista = new ArrayList<NotiChat>();
+        PubliNoti devolver;
+        ArrayList<PubliNoti> lista = new ArrayList<PubliNoti>();
         try {
             JSONArray JsonTurnos = new JSONArray(JSONstr);
             for (int i = 0; i < JsonTurnos.length(); i++)
             {
-                devolver = new NotiChat();
+                devolver = new PubliNoti();
                 JSONObject JsonTurno = JsonTurnos.getJSONObject(i);
-                devolver.idchat= JsonTurno.getInt("idchat");
+                devolver.idusuario= JsonTurno.getInt("idchat");
                 devolver.cont = JsonTurno.getInt("cont");
                 lista.add(devolver);
             }
@@ -145,5 +138,12 @@ public class MyIntentService extends IntentService{
             e.printStackTrace();
         }
         return lista;
+    }
+    private void SinEstoNoFunca()
+    {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
     }
 }

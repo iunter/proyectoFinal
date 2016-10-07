@@ -27,8 +27,8 @@ public class muroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_muro);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        publicacion.idpaciente = bundle.getInt(verTurnos.hola);
-        publicacion.idusuario = bundle.getInt(verChats.shalom);
+        publicacion.idpaciente = Main2Activity.idPaciente;
+        publicacion.idusuario = Main2Activity.idUsuario;
         ObtenerReferencias();
         adapter = new Adapter(publicacion.TraerPublicacion(), this);
         lstPublicaciones.setAdapter(adapter);

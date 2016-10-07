@@ -28,9 +28,7 @@ public class chat extends AppCompatActivity {
     Mensaje mensaje = new Mensaje();
     Adapter adapter;
     ArrayList<Mensaje> list = new ArrayList<Mensaje>();
-    public static int cont;
-    public static AlarmManager alarmManager;
-    public static PendingIntent pending;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +41,6 @@ public class chat extends AppCompatActivity {
         mensaje.idusuario = bundle.getInt(verChats.shalom);
         adapter = new Adapter(list,this);
         lstChat.setAdapter(adapter);
-        cont = adapter.getCount();
-            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            Intent alarmIntent = new Intent(getApplicationContext(), MyIntentService.class);
-            pending = PendingIntent.getService(getApplicationContext(), 0, alarmIntent, 0);
-            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 3000, 60000, pending);
         btnEnviar.setOnClickListener(btnEnviar_Click);
     }
     private View.OnClickListener btnEnviar_Click = new View.OnClickListener() {
@@ -61,7 +53,6 @@ public class chat extends AppCompatActivity {
                 list = mensaje.TraerMensaje();
                 adapter = new Adapter(list, chat.this);
                 lstChat.setAdapter(adapter);
-                cont = adapter.getCount();
             }
         }
     };

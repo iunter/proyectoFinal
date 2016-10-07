@@ -32,15 +32,18 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    int idPaciente;
-    int idUsuario;
+    public static int idPaciente;
+    public static int idUsuario;
     TextView txtNombre, txtDni, txtObra, txtSocio;
     ListView lstUsuarios;
     Adapter adapter;
     ImageButton btnNuevo;
     Usuario usuario = new Usuario();
     Paciente paciente = new Paciente();
-
+    public static AlarmManager alarmManager;
+    public static PendingIntent pending;
+    public static AlarmManager alarmManager2;
+    public static PendingIntent pending2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +73,16 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent alarmIntent = new Intent(getApplicationContext(), MyIntentService.class);
+        pending = PendingIntent.getService(getApplicationContext(), 0, alarmIntent, 0);
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime(), 30000, pending);
+        alarmManager2 = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent alarmIntent2 = new Intent(getApplicationContext(), PublicacionService.class);
+        pending2 = PendingIntent.getService(getApplicationContext(), 0, alarmIntent2, 0);
+        alarmManager2.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime(), 30000, pending2);
     }
 
     @Override

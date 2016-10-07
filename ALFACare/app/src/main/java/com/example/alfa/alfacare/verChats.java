@@ -26,7 +26,7 @@ public class verChats extends AppCompatActivity {
         setContentView(R.layout.activity_ver_chats);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        usuario = bundle.getInt(verTurnos.hola);
+        usuario = Main2Activity.idUsuario;
         lstChats = (ListView)findViewById(R.id.lstChats);
         ArrayList<Chats> arrayList = new ArrayList<Chats>();
         arrayList = chats.TraerChats(usuario);
