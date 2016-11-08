@@ -41,7 +41,12 @@
             android:exported="false" />
         <service
             android:name=".PublicacionService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity
+            android:name=".verChats2"
+            android:label="@string/title_activity_ver_chats2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

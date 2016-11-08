@@ -1,5 +1,8 @@
 package com.example.alfa.alfacare;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
 
@@ -28,6 +31,7 @@ public class Paciente {
     public int longg;
     public int idobrasocial;
     public String obrasocial;
+    private Context contexto;
     /////////////////////////////////////////
     public Paciente TraerUno()
     {
@@ -106,4 +110,61 @@ public class Paciente {
             StrictMode.setThreadPolicy(policy);
         }
     }
+   /* public class TraerUnoAsync extends AsyncTask<Void,Void,Paciente>
+    {
+        ProgressDialog progressInicio = new ProgressDialog(contexto);
+        @Override
+        protected Usuario doInBackground(Void... params) {
+            OkHttpClient client = new OkHttpClient();
+            String url ="http://alfacare.esy.es/DB/TraerUnUsuario.php";
+            JSONObject json = new JSONObject();
+            try {
+                json.put("usuario", usuario);
+                RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString());
+                Request request = new Request.Builder()
+                        .url(url)
+                        .post(body)
+                        .build();
+                Response response = client.newCall(request).execute();
+                String JSONstr = response.body().string();
+                try {
+                    JSONObject JSON = new JSONObject(JSONstr);
+                    iniciarSesion.miUsuario.idUsuario = JSON.getInt("idusuario");
+                    iniciarSesion.miUsuario.usuario = JSON.getString("usuario");
+                    iniciarSesion.miUsuario.nombre =  JSON.getString("nombre");
+                    iniciarSesion.miUsuario.apellido = JSON.getString("apellido");
+                    iniciarSesion.miUsuario.idpaciente = JSON.getInt("idpaciente");
+                    iniciarSesion.miUsuario.dni = JSON.getInt("dni");
+                    iniciarSesion.miUsuario.foto = JSON.getString("foto");
+                    iniciarSesion.miUsuario.matricula = JSON.getString("matricula");
+                    iniciarSesion.miUsuario.idTipo = JSON.getInt("idtipo");
+                    iniciarSesion.miUsuario.clave = JSON.getString("clave");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                //e.printStackTrace();
+                Log.e("IOIOIOIO", "ERROR", e);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return iniciarSesion.miUsuario;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressInicio.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progressInicio.setMax(100);
+            progressInicio.setTitle("Cargando...");
+            progressInicio.show();
+        }
+
+        @Override
+        protected void onPostExecute(Usuario usuario) {
+            super.onPostExecute(usuario);
+            iniciarSesion.miUsuario = usuario;
+        }
+    }*/
 }

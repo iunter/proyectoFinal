@@ -2,6 +2,7 @@ package com.example.alfa.alfacare;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.internal.widget.AdapterViewCompat;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 public class verTurnos extends AppCompatActivity {
     ListView lstTurnos;
     Adapter adapter;
+    ImageButton imageButton;
     turnoClass turno = new turnoClass();
     public final static String hola = "mayonesa con pure";
     @Override
@@ -30,11 +34,21 @@ public class verTurnos extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         turno.idpaciente = bundle.getInt(verTurnos.hola);
         lstTurnos = (ListView) findViewById(R.id.listView);
+        imageButton = (ImageButton) findViewById(R.id.btnTurnoNuevo);
         ArrayList<turnoClass> array = turno.TraerTurnos();
         adapter = new Adapter(array, this);
         lstTurnos.setAdapter(adapter);
         lstTurnos.setOnItemClickListener(lstTurnos_Click);
+        imageButton.setOnClickListener(imageButton_Click);
     }
+    private View.OnClickListener imageButton_Click = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(verTurnos.this, com.example.alfa.alfacare.turno.class);
+            startActivity(intent);
+
+        }
+    };
     private AdapterView.OnItemClickListener lstTurnos_Click = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

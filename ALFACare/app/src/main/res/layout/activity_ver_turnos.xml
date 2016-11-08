@@ -8,10 +8,20 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.alfa.alfacare.verTurnos">
+    tools:context="com.example.alfa.alfacare.verTurnos"
+    android:background="#b6afaf">
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnTurnoNuevo"
+        android:layout_gravity="right"
+        android:src="@android:drawable/ic_input_add" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listView" />
+        android:id="@+id/listView"
+        android:background="#ffffff"/>
+
 </LinearLayout>

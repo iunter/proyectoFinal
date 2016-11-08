@@ -196,6 +196,10 @@ public class turnoClass implements Serializable{
             StrictMode.setThreadPolicy(policy);
         }
     }
+    private void adsda()
+    {
+        new TurnoTask().execute("s");
+    }
     public class TurnoTask extends AsyncTask<String,Void,ArrayList<turnoClass>>
     {
         @Override
@@ -220,7 +224,8 @@ public class turnoClass implements Serializable{
             }
             return devolver;
         }
-         ArrayList<turnoClass> ParsearResultado(String JSONstr) throws JSONException
+
+        ArrayList<turnoClass> ParsearResultado(String JSONstr) throws JSONException
         {
 
             turnoClass devolver;
@@ -244,6 +249,7 @@ public class turnoClass implements Serializable{
                 e.printStackTrace();
             }
             return lista;
+
         }
     }
 

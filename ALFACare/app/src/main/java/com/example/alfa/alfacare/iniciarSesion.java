@@ -1,5 +1,7 @@
 package com.example.alfa.alfacare;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +13,8 @@ import android.widget.Toast;
 public class iniciarSesion extends AppCompatActivity {
     EditText edtUsuario, edtPass;
     Button btnEnviar;
-    Usuario miUsuario = new Usuario();
+    public static Usuario miUsuario = new Usuario();
+    public static Context context = null;
     public final static String hola2 = "aeaea";
     public final static String ajaj = "cholocheist";
     @Override

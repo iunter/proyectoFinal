@@ -91,7 +91,7 @@ public class chat extends AppCompatActivity {
             LayoutInflater inflater;
             inflater = (LayoutInflater) miContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             user.usuario = getItem(index).usuario;
-            user = user.TraerUno();
+            user.TraerUno();
             if (getItem(index).idusuario == mensaje.idusuario) {
                 vistaDevolver = inflater.inflate(R.layout.mensajechatderecha, grupo, false);
             }

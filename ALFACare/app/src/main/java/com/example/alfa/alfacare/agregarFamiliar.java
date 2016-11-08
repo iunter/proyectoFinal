@@ -77,6 +77,12 @@ public class agregarFamiliar extends AppCompatActivity {
             uspas.idpaciente = idpaciente;
             uspas.NuevoUsuarioPaciente();
             Toast.makeText(agregarFamiliar.this, "Familiar Agregado", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(agregarFamiliar.this, Main2Activity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt(verTurnos.hola, idpaciente);
+            bundle.putInt(verChats.shalom, Main2Activity.idUsuario);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     };
     public class Adapter extends BaseAdapter {

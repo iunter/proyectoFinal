@@ -49,8 +49,7 @@ public class turno extends AppCompatActivity {
     int year;
     int hora;
     int min;
-    //alguna forma de recibir el id del paciente?
-    int paciente = 2;
+    int paciente = Main2Activity.idPaciente;
     TimePicker tmpTime;
     DatePicker dtpfecha;
     Button btnCambiar;

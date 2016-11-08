@@ -39,7 +39,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     Adapter adapter;
     ImageButton btnNuevo;
     Usuario usuario = new Usuario();
-    Paciente paciente = new Paciente();
+    public static Paciente paciente = new Paciente();
     public static AlarmManager alarmManager;
     public static PendingIntent pending;
     public static AlarmManager alarmManager2;
@@ -138,17 +138,13 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             startActivity(intent);
 
         } else if (id == R.id.nav_chat) {
-            Intent intent = new Intent(Main2Activity.this, verChats.class);
+            Intent intent = new Intent(Main2Activity.this, verChats2.class);
             Bundle bundle = new Bundle();
             bundle.putInt(verTurnos.hola, idUsuario);
             intent.putExtras(bundle);
             startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_paciente) {
 
         }
 
