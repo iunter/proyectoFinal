@@ -44,7 +44,6 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     public static PendingIntent pending;
     public static AlarmManager alarmManager2;
     public static PendingIntent pending2;
-    public static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +59,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         txtDni.setText(String.valueOf(paciente.dni));
         txtObra.setText(paciente.obrasocial);
         txtSocio.setText(String.valueOf(paciente.socio));
-        usuarios = usuario.TraerUsuariosPaciente(idPaciente);
+        ArrayList<Usuario> usuarios = usuario.TraerUsuariosPaciente(idPaciente);
         adapter = new Adapter(usuarios,this);
         lstUsuarios.setAdapter(adapter);
         btnNuevo.setOnClickListener(btnNuevo_Click);

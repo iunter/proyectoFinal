@@ -38,7 +38,7 @@ public class chat extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         mensaje.idchat = bundle.getInt(verTurnos.hola);
         list = mensaje.TraerMensaje();
-        mensaje.idusuario = Main2Activity.idUsuario;
+        mensaje.idusuario = bundle.getInt(verChats.shalom);
         adapter = new Adapter(list,this);
         lstChat.setAdapter(adapter);
         btnEnviar.setOnClickListener(btnEnviar_Click);

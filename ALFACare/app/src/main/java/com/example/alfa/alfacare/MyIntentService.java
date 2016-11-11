@@ -68,7 +68,7 @@ public class MyIntentService extends IntentService{
                 acum += lista.get(i).cont;
             }
             Notification n  = null;
-            Intent intent = new Intent(getApplicationContext(), verChats2.class);
+            Intent intent = new Intent(getApplicationContext(), verChats.class);
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                 Bitmap icon = BitmapFactory.decodeResource(getApplicationContext().getResources(),
                         R.drawable.logo2);

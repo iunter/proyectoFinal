@@ -29,19 +29,17 @@ public class iniciarSesion extends AppCompatActivity {
         public void onClick(View view) {
             miUsuario.usuario = edtUsuario.getText().toString();
             miUsuario = miUsuario.TraerUno();
-            if(miUsuario.clave != null) {
-                if (miUsuario.clave.equals(edtPass.getText().toString())) {
-                    Intent elintent = new Intent(iniciarSesion.this, Main2Activity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putInt(verTurnos.hola, miUsuario.idpaciente);
-                    bundle.putInt(verChats.shalom, miUsuario.idUsuario);
-                    elintent.putExtras(bundle);
-                    startActivity(elintent);
-                } else {
-                    Toast.makeText(iniciarSesion.this, "Usuario o Contraseña invalidos", Toast.LENGTH_SHORT).show();
-                }
+            if (miUsuario.clave.equals(edtPass.getText().toString()))
+            {
+                Intent elintent = new Intent(iniciarSesion.this, Main2Activity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt(verTurnos.hola, miUsuario.idpaciente);
+                bundle.putInt(verChats.shalom, miUsuario.idUsuario);
+                elintent.putExtras(bundle);
+                startActivity(elintent);
             }
-            else {
+            else
+            {
                 Toast.makeText(iniciarSesion.this, "Usuario o Contraseña invalidos", Toast.LENGTH_SHORT).show();
             }
         }
