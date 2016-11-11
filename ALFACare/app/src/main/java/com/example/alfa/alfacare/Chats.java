@@ -48,6 +48,64 @@ public class Chats {
         }
         return lista;
     }
+    public void NuevoChat()
+    {
+        SinEstoNoFunca();
+        OkHttpClient client = new OkHttpClient();
+        String url ="http://alfacare.esy.es/DB/NuevoChat.php";
+        JSONObject json = new JSONObject();
+        try{
+            json.put("idusuario1", idusuario1);
+            json.put("idusuario2", idusuario2);
+            RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString());
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .build();
+            Response response = client.newCall(request).execute();
+        } catch (JSONException e) {
+            //e.printStackTrace();
+            Log.e("JOTASON", "ERROR", e);
+        } catch (IOException e) {
+            //e.printStackTrace();
+            Log.e("IOIOIOIO", "ERROR", e);
+        }
+    }
+    public void TraerUnoChats()
+    {
+        SinEstoNoFunca();
+        ArrayList<Chats> devolver = new ArrayList<Chats>();
+        OkHttpClient client = new OkHttpClient();
+        String url ="http://alfacare.esy.es/DB/TraerUnoChats.php";
+        JSONObject json = new JSONObject();
+
+        try {
+            json.put("usuario1", idusuario1);
+            json.put("usuario2", idusuario2);
+            RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), json.toString());
+            Request request = new Request.Builder()
+                    .url(url)
+                    .post(body)
+                    .build();
+            Response response = null;
+            response = client.newCall(request).execute();
+            String JSONstr = response.body().string();
+            JSONObject JSON = new JSONObject(JSONstr);
+            idchat= JSON.getInt("idchat");
+            idusuario1 = JSON.getInt("idusuario1");
+            idusuario2 = JSON.getInt("idusuario2");
+            usuario1 = JSON.getString("usuario1");
+            usuario2 = JSON.getString("usuario2");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("Error", e.getMessage());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Log.e("Error", e.getMessage());
+        }
+    }
     public ArrayList<Chats> TraerChats(int usuario)
     {
         SinEstoNoFunca();

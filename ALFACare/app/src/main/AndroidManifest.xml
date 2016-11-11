@@ -46,7 +46,8 @@
         <activity
             android:name=".verChats2"
             android:label="@string/title_activity_ver_chats2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".NuevoChat"></activity>
     </application>
 
 </manifest>
