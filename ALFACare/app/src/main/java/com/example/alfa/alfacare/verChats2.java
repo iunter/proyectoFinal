@@ -32,6 +32,7 @@ public class verChats2 extends AppCompatActivity
     Adapter adapter;
     Chats chats = new Chats();
     int usuario;
+    public static ArrayList<Chats> arrayList = new ArrayList<Chats>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +44,10 @@ public class verChats2 extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Toast.makeText(verChats2.this, "hola", Toast.LENGTH_SHORT).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                Intent intent = new Intent(verChats2.this, NuevoChat.class);
+                startActivity(intent);
             }
         });
 
@@ -59,7 +61,6 @@ public class verChats2 extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         usuario = Main2Activity.idUsuario;
         lstChats = (ListView)findViewById(R.id.lstChats);
-        ArrayList<Chats> arrayList = new ArrayList<Chats>();
         arrayList = chats.TraerChats(usuario);
         adapter = new Adapter(arrayList,this);
         lstChats.setAdapter(adapter);
@@ -71,7 +72,6 @@ public class verChats2 extends AppCompatActivity
             Intent intent = new Intent(verChats2.this, chat.class);
             Bundle bundle = new Bundle();
             bundle.putInt(verTurnos.hola, adapter.getItem(i).idchat);
-            bundle.putInt(verChats.shalom, usuario);
             intent.putExtras(bundle);
             startActivity(intent);
         }
